@@ -41,7 +41,7 @@ def todo_detail(request, pk):
     
     #? update todo by id
     elif request.method == 'PUT':
-        serializer = TodoSerializer(todo, data=request.data)
+        serializer = TodoSerializer(instance=todo, data=request.data)
         if serializer.is_valid():
             serializer.save()
             message = {
