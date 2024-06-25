@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
 from .models import Todo
 
@@ -57,3 +58,22 @@ def todo_detail(request, pk):
             "message": "Todo deleted successfully"
             }
         return Response(message, status=status.HTTP_200_OK)
+
+
+#! _______________ create view by concrete view  _______________
+
+class Todo_List_Create(ListCreateAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+#  details todo
+class Todo_Detail(RetrieveUpdateDestroyAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+
+
+
+
+
+
